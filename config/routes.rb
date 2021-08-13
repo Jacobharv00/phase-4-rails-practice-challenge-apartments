@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # added :index to leases just to see data
+  resources :leases, only: [:index, :create, :destroy]
+  resources :tenants, only: [:index, :create, :update, :destroy]
+  resources :apartments, only: [:index, :create, :update, :destroy]
 end
