@@ -17,9 +17,8 @@ class ApartmentsController < ApplicationController
 
   def update
     apartment = find_apartment
-    apartment.update(apartment_params)
-    if apartment.valid?
-      render json: apartment, include: [:tenants, :leases], status: :reset_content
+    if apartment.update(apartment_params)
+      render json: apartment, include: [:tenants, :leases], status: :ok
     else
       render json: {error: apartment.errors.full_messages}, status: :unprocessable_entity
     end

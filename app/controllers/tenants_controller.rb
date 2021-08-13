@@ -17,9 +17,8 @@ class TenantsController < ApplicationController
 
   def update
     tenant = find_tenant
-    tenant.update(tenant_params)
-    if tenant.valid?
-      render json: tenant, include: [:apartments, :leases], status: :reset_content
+    if tenant.update(tenant_params)
+      render json: tenant, include: [:apartments, :leases], status: :ok
     else
       render json: {error: tenant.errors.full_messages}, status: :unprocessable_entity
     end

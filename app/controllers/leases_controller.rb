@@ -10,7 +10,7 @@ class LeasesController < ApplicationController
   def create
     lease = Lease.create(lease_params)
     if lease.valid?
-      render json: lease, include: [:tenants, :apartments], status: :created
+      render json: lease, include: [:tenant, :apartment], status: :created
     else
       render json: {error: lease.errors.full_messages}, status: :unprocessable_entity
     end
